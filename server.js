@@ -3,47 +3,28 @@ const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-<<<<<<< HEAD
-=======
 require('dotenv').config();  // Load env vars from .env
->>>>>>> e662636 (version4.0)
 
 // Create Express app
 const app = express();
 
 // Middleware
-<<<<<<< HEAD
-app.use(cors());                 // Allow cross-origin requests
-app.use(bodyParser.json());       // Parse JSON body data
-
-// Setup database connection
-const db = mysql.createConnection({
-    host: 'ushasree-db.c588mswco6jw.ap-south-1.rds.amazonaws.com', // Replace with your RDS endpoint
-    user: 'admin',                    // RDS username
-    password: 'ushasreedb',             // RDS password
-    database: 'ushasree-db'                  // RDS database
-=======
 app.use(cors());
 app.use(bodyParser.json());
 
 // Setup database connection
 const db = mysql.createConnection({
-    host: ushasree-db.c588mswco6jw.ap-south-1.rds.amazonaws.com,
-    user: admin,
-    password: admin123,
-    database: ushasree-db
->>>>>>> e662636 (version4.0)
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME
 });
 
 // Connect to database
 db.connect((err) => {
     if (err) {
         console.error('❌ Database Connection Failed:', err.message);
-<<<<<<< HEAD
-        process.exit(1);  // Exit if database connection fails
-=======
         process.exit(1);
->>>>>>> e662636 (version4.0)
     }
     console.log('✅ Connected to RDS database!');
 });
@@ -84,30 +65,8 @@ app.post('/login', (req, res) => {
     });
 });
 
-<<<<<<< HEAD
-// Start the server
-const PORT = 3000;
-=======
-// ✅ API: Enroll in a course
-app.post('/enroll', (req, res) => {
-    const { course, email, password } = req.body;
-    if (!course || !email || !password) {
-        return res.status(400).send("All fields are required.");
-    }
-
-    const sql = "INSERT INTO enrollments (course_name, email, password) VALUES (?, ?, ?)";
-    db.query(sql, [course, email, password], (err, result) => {
-        if (err) {
-            console.error("❌ Enrollment DB Error:", err.message);
-            return res.status(500).send("Enrollment failed.");
-        }
-        res.send("✅ Enrollment successful!");
-    });
-});
-
 // Start the server
 const PORT = process.env.PORT || 3000;
->>>>>>> e662636 (version4.0)
 app.listen(PORT, () => {
     console.log(`🚀 Backend running on port ${PORT}`);
 });

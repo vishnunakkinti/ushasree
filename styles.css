@@ -10,10 +10,7 @@
   body {
     font-family: Arial, sans-serif;
     color: #333;
-<<<<<<< HEAD
     /* Default background for the homepage */
-=======
->>>>>>> e662636 (version4.0)
     background: url('images/UshasreeTech&Foods.png') no-repeat center center fixed;
     background-size: 1500px 1000px;
   }
@@ -21,36 +18,22 @@
   /* ==========================================================================
      HOMEPAGE STYLES (INDEX.HTML)
      ========================================================================== */
-<<<<<<< HEAD
   
   /* Hero Header on Homepage */
   header.hero {
     text-align: center;
     padding: 150px 20px 50px;  /* Top padding creates space for the title */
-=======
-  header.hero {
-    text-align: center;
-    padding: 150px 20px 50px;
->>>>>>> e662636 (version4.0)
     color: #fff;
   }
   
   .header-content h1 {
     font-size: 3rem;
-<<<<<<< HEAD
     white-space: nowrap;      /* Prevent the title from wrapping into multiple lines */
-=======
-    white-space: nowrap;
->>>>>>> e662636 (version4.0)
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
   }
   
   /* ==========================================================================
-<<<<<<< HEAD
      SERVICES SECTION (Common to Homepage)
-=======
-     SERVICES SECTION
->>>>>>> e662636 (version4.0)
      ========================================================================== */
   main {
     padding: 50px 20px;
@@ -64,14 +47,9 @@
     margin-top: 50px;
   }
   
-<<<<<<< HEAD
   /* Service Card Styles */
   .service-card {
     background: rgba(255, 255, 255, 0.9); /* Semi-transparent white for readability */
-=======
-  .service-card {
-    background: rgba(255, 255, 255, 0.9);
->>>>>>> e662636 (version4.0)
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     max-width: 300px;
@@ -117,7 +95,6 @@
   }
   
   /* ==========================================================================
-<<<<<<< HEAD
      SUBPAGE STYLES (Technologies & Foods Pages)
      ========================================================================== */
   
@@ -134,29 +111,12 @@
   }
   
   /* Shared Subpage Header Styles */
-=======
-     SUBPAGE STYLES (Technologies & Foods)
-     ========================================================================== */
-  .tech-page {
-    background: url('images/tech.jpg') no-repeat center center fixed;
-    background-size: cover;
-  }
-  
-  .foods-page {
-    background: url('images/food.jpg') no-repeat center center fixed;
-    background-size: cover;
-  }
-  
->>>>>>> e662636 (version4.0)
   .subpage-header {
     text-align: center;
     padding: 80px 20px;
     color: #140b0b;
-<<<<<<< HEAD
     /* Optional overlay color for better text readability 
     background: rgba(229, 234, 239, 0.8);*/
-=======
->>>>>>> e662636 (version4.0)
   }
   
   .subpage-header h1 {
@@ -167,12 +127,9 @@
     font-size: 1.2rem;
   }
   
-<<<<<<< HEAD
   /* ==========================================================================
      SUBPAGE CONTENT SECTION
      ========================================================================== */
-=======
->>>>>>> e662636 (version4.0)
   .content {
     background: rgba(255, 255, 255, 0.95);
     padding: 40px;
@@ -208,7 +165,6 @@
     padding: 20px;
     margin-top: 50px;
   }
-<<<<<<< HEAD
 
   /* For UshaSree Technologies page */
 .tech-page {
@@ -224,10 +180,6 @@
 
   /* Back Button Styling */
 .back-btn {
-=======
-  
-  .back-btn {
->>>>>>> e662636 (version4.0)
     display: inline-block;
     margin-top: 20px;
     padding: 10px 15px;
@@ -238,13 +190,6 @@
     transition: background 0.3s;
   }
   
-  .back-btn:hover {
-    background: #0056b3;
-<<<<<<< HEAD
-  }
-=======
-  }
-  
   .cart-list button {
     margin-left: 5px;
     padding: 4px 8px;
@@ -252,105 +197,6 @@
     font-size: 14px;
   }
   
-  /* ==========================================================================
-     CART PAGE STYLES
-     ========================================================================== */
-  .cart-page {
-    padding: 20px;
+  .back-btn:hover {
+    background: #0056b3;
   }
-  
-  .cart-items {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  .cart-item {
-    display: flex;
-    gap: 15px;
-    background: #fff;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  }
-  
-  .cart-item img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 5px;
-  }
-  
-  .cart-details {
-    flex: 1;
-  }
-  
-  .cart-details h3 {
-    margin-bottom: 8px;
-  }
-  
-  .cart-controls {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 8px;
-  }
-  
-  .cart-controls button {
-    padding: 4px 10px;
-    border: none;
-    background: #007BFF;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 4px;
-  }
-  
-  .cart-controls .delete-btn {
-    background: #dc3545;
-  }
-  
-  .cart-total {
-    text-align: right;
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin: 20px auto;
-    max-width: 800px;
-  }
-  
-  .cart-actions {
-    text-align: center;
-    margin-top: 30px;
-  }
-  
-  .cart-actions .btn {
-    margin: 0 10px;
-  }
-  
-  /* ==========================================================================
-     TOAST STYLES
-     ========================================================================== */
-  .toast {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background-color: #28a745;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 6px;
-    box-shadow: 0 0 10px #999;
-    z-index: 1000;
-    animation: fadein 0.3s ease, fadeout 0.3s 2.2s ease;
-  }
-  
-  @keyframes fadein {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  
-  @keyframes fadeout {
-    from { opacity: 1; transform: translateY(0); }
-    to   { opacity: 0; transform: translateY(20px); }
-  }
-  
->>>>>>> e662636 (version4.0)
