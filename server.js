@@ -14,10 +14,10 @@ app.use(bodyParser.json());
 
 // Setup database connection
 const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME
+    host: process.env.DB_HOST || 'ushasree-db.c588mswco6jw.ap-south-1.rds.amazonaws.com',
+    user: process.env.DB_USER || 'admin',
+    password: process.env.DB_PASSWORD || 'admin123',
+    database: process.env.DB_NAME || 'ushasree'  // Use correct DB name here
 });
 
 // Connect to database
@@ -28,6 +28,15 @@ db.connect((err) => {
     }
     console.log('✅ Connected to RDS database!');
 });
+
+// Default route for health check
+app.get('/', (req, res) => {
+    res.send('✅ UshaSree Backend is Running');
+});
+app.get('/login', (req, res) => {
+    res.send('Login route is POST-only. Please send POST request.');
+});
+
 
 // API: Signup
 app.post('/signup', (req, res) => {
@@ -62,6 +71,22 @@ app.post('/login', (req, res) => {
         } else {
             res.status(401).send('❌ Invalid Credentials');
         }
+    });
+});
+
+// API: Enroll in a course
+app.post('/enroll', (req, res) => {
+    const { course, email, password } = req.body;
+    if (!course || !email || !password) {
+        return res.status(400).send("All fields are required.");
+    }
+    const sql = "INSERT INTO enrollments (course_name, email, password) VALUES (?, ?, ?)";
+    db.query(sql, [course, email, password], (err, result) => {
+        if (err) {
+            console.error("❌ Enrollment DB Error:", err.message);
+            return res.status(500).send("Enrollment failed.");
+        }
+        res.send("✅ Enrollment successful!");
     });
 });
 
