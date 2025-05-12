@@ -1,0 +1,11 @@
+sudo apt update && sudo apt upgrade -y
+
+# Install Nginx
+sudo apt install -y nginx
+
+# Replace default site with your frontend files
+sudo rm -rf /var/www/html/*
+sudo cp -r /path/to/your/frontend/* /var/www/html/
+
+# Restart Nginx
+sudo systemctl restart nginx

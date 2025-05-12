@@ -1,0 +1,25 @@
+sudo apt update && sudo apt upgrade -y
+
+# Install Node.js and npm (LTS version)
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt install -y nodejs
+
+# Verify
+node -v
+npm -v
+
+# Install MySQL client
+sudo apt install -y mysql-client
+
+# Clone or upload your backend project, e.g.:
+# git clone https://github.com/your-repo/backend.git
+cd backend
+
+echo "🚀 Installing pm2 globally..."
+sudo npm install -g pm2
+
+# Install backend dependencies
+npm install
+
+# Start backend server (or use pm2 or systemd for persistence)
+pm2 start server.js

@@ -14,10 +14,10 @@ app.use(bodyParser.json());
 
 // Setup database connection
 const db = mysql.createConnection({
-    host: process.env.DB_HOST || 'ushasree-db.c588mswco6jw.ap-south-1.rds.amazonaws.com',
+    host: process.env.DB_HOST || 'ushasreedb.c588mswco6jw.ap-south-1.rds.amazonaws.com',
     user: process.env.DB_USER || 'admin',
     password: process.env.DB_PASSWORD || 'admin123',
-    database: process.env.DB_NAME || 'ushasree'  // Use correct DB name here
+    database: process.env.DB_NAME || 'ushasreedb'  // Use correct DB name here
 });
 
 // Connect to database
