@@ -8,7 +8,7 @@ sudo apt install -y nginx
 #mkdir -p /var/www/frontend
 
 echo "📁 Copying website files to /var/www/frontend..."
-sudo cp -r /home/ubuntu/ushasree/frontend/* /var/www/html/
+sudo cp -r /home/ubuntu/ushasree/Frontend/* /var/www/html/
 
 
 echo "🛠️ Configuring Nginx for frontend..."
