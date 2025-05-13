@@ -3,6 +3,7 @@ const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs');  // Add bcrypt for password hashing
 require('dotenv').config();  // Load env vars from .env
 
 // Create Express app
@@ -37,20 +38,28 @@ app.get('/login', (req, res) => {
     res.send('Login route is POST-only. Please send POST request.');
 });
 
-
 // API: Signup
 app.post('/signup', (req, res) => {
     const { username, email, password } = req.body;
     if (!username || !email || !password) {
         return res.status(400).send('All fields are required');
     }
-    const sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
-    db.query(sql, [username, email, password], (err, result) => {
+
+    // Hash the password before storing it in the database
+    bcrypt.hash(password, 10, (err, hashedPassword) => {
         if (err) {
-            console.error('❌ Signup DB Error:', err.message);
-            return res.status(500).send('Signup failed: ' + err.message);
+            console.error('❌ Error hashing password:', err.message);
+            return res.status(500).send('Error hashing password');
         }
-        res.send('🎉 User Registered Successfully');
+
+        const sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
+        db.query(sql, [username, email, hashedPassword], (err, result) => {
+            if (err) {
+                console.error('❌ Signup DB Error:', err.message);
+                return res.status(500).send('Signup failed: ' + err.message);
+            }
+            res.send('🎉 User Registered Successfully');
+        });
     });
 });
 
@@ -60,14 +69,27 @@ app.post('/login', (req, res) => {
     if (!username || !password) {
         return res.status(400).send('Both username and password are required');
     }
-    const sql = "SELECT * FROM users WHERE username = ? AND password = ?";
-    db.query(sql, [username, password], (err, results) => {
+
+    const sql = "SELECT * FROM users WHERE username = ?";
+    db.query(sql, [username], (err, results) => {
         if (err) {
             console.error('❌ Login DB Error:', err.message);
             return res.status(500).send('Login failed: ' + err.message);
         }
         if (results.length > 0) {
-            res.send('✅ Login Successful');
+            // Compare the provided password with the hashed password in the database
+            bcrypt.compare(password, results[0].password, (err, isMatch) => {
+                if (err) {
+                    console.error('❌ Error comparing passwords:', err.message);
+                    return res.status(500).send('Error comparing passwords');
+                }
+
+                if (isMatch) {
+                    res.send('✅ Login Successful');
+                } else {
+                    res.status(401).send('❌ Invalid Credentials');
+                }
+            });
         } else {
             res.status(401).send('❌ Invalid Credentials');
         }
@@ -80,6 +102,7 @@ app.post('/enroll', (req, res) => {
     if (!course || !email || !password) {
         return res.status(400).send("All fields are required.");
     }
+
     const sql = "INSERT INTO enrollments (course_name, email, password) VALUES (?, ?, ?)";
     db.query(sql, [course, email, password], (err, result) => {
         if (err) {
